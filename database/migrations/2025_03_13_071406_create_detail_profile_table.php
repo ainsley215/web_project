@@ -13,12 +13,14 @@ class CreateDetailProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_profile', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('address');
-            $table->string('nomor_tlp');
-            $table->date('ttl');
-            $table->string("foto");
+            $table->string('name');
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

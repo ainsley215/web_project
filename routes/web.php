@@ -55,3 +55,6 @@ Route::redirect('/old-route', '/user');
 Route::fallback(function () {
     return response()->json(['message' => 'Halaman tidak ditemukan!'], 404);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
