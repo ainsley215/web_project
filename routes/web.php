@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PengalamanKerjaController;
 use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\PendidikanController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PegawaiController;
+
 
 // Route dasar
 Route::get('/', function () {
@@ -65,5 +69,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/pengalaman_kerja', [PengalamanKerjaController::class, 'index'])->name('pengalaman_kerja.index');
 Route::get('/pengalaman_kerja/create', [PengalamanKerjaController::class, 'create'])->name('pengalaman_kerja.create');
 
+
 Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('pendidikan.index');
 Route::get('/pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
+
+Route::get('/session/create', [SessionController::class, 'createSession']);
+Route::get('/session/show', [SessionController::class, 'showSession']);
+Route::get('/session/delete', [SessionController::class, 'deleteSession']);
+
+Route::get('/pegawai/{nama}', [PegawaiController::class, 'showName']);
+
+Route::get('/formulir', [PegawaiController::class, 'showForm']);
+Route::post('/formulir/proses', [PegawaiController::class, 'processForm']);
