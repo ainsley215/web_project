@@ -9,6 +9,7 @@ use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
 
+use App\Http\Controllers\UploadController;
 
 // Route dasar
 Route::get('/', function () {
@@ -81,3 +82,22 @@ Route::get('/pegawai/{nama}', [PegawaiController::class, 'showName']);
 
 Route::get('/formulir', [PegawaiController::class, 'showForm']);
 Route::post('/formulir/proses', [PegawaiController::class, 'processForm']);
+
+Route::get('/upload', [UploadController::class, 'index'])->name('upload.form');
+Route::post('/upload/proses', [UploadController::class, 'proses'])->name('upload.proses');
+Route::post('/upload/resize', [UploadController::class, 'upload_resize'])->name('upload.resize');
+Route::post('/upload/multiple', [UploadController::class, 'multipleUpload'])->name('upload.multiple');
+
+// Route::get('/dropzone', [UploadController::class, 'index']);
+Route::post('/dropzone/store', [UploadController::class, 'store'])->name('dropzone.store');
+
+Route::get('/pdf_upload', [UploadController::class, 'pdfIndex']);
+Route::post('/pdf_upload/store', [UploadController::class, 'pdfStore'])->name('pdf.store');
+// Route::post('/dropzone/upload', [UploadController::class, 'multipleUpload'])->name('dropzone.upload');
+
+Route::get('/dropzone', function () {
+    return view('dropzone_upload');
+});
+
+Route::get('/dropzone', [UploadController::class, 'dropzoneIndex'])->name('dropzone.index');
+Route::post('/dropzone/upload', [UploadController::class, 'multipleUpload'])->name('dropzone.upload');
