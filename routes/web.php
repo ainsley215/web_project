@@ -63,3 +63,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/pengalaman_kerja', [PengalamanKerjaController::class, 'index'])->name('pengalaman_kerja.index');
 Route::get('/pengalaman_kerja/create', [PengalamanKerjaController::class, 'create'])->name('pengalaman_kerja.create');
+
+
+
