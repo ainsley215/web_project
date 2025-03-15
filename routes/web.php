@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PengalamanKerjaController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PendidikanController;
 
 // Route dasar
 Route::get('/', function () {
@@ -55,3 +58,12 @@ Route::redirect('/old-route', '/user');
 Route::fallback(function () {
     return response()->json(['message' => 'Halaman tidak ditemukan!'], 404);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/pengalaman_kerja', [PengalamanKerjaController::class, 'index'])->name('pengalaman_kerja.index');
+Route::get('/pengalaman_kerja/create', [PengalamanKerjaController::class, 'create'])->name('pengalaman_kerja.create');
+
+Route::get('/pendidikan', [PendidikanController::class, 'index'])->name('pendidikan.index');
+Route::get('/pendidikan/create', [PendidikanController::class, 'create'])->name('pendidikan.create');
